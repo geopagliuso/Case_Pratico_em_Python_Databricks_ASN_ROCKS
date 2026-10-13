@@ -1,6 +1,8 @@
 # Previsão de Churn na Comunidade TMW
 ### Case Prático em Python e Databricks (CPPD)
 
+![Capa da apresentação](img/slides/01_capa.png)
+
 Projeto de Data Science de ponta a ponta desenvolvido no **Case Prático em Python e Databricks**, com dados reais da comunidade [Téo Me Why](https://teomewhy.org/twitch), uma iniciativa de educação gratuita em dados que faz lives na Twitch.
 
 O projeto cobre todas as etapas de um pipeline de dados: entendimento do negócio, criação de features em SQL, montagem da ABT, modelagem com MLflow e uma proposta de ação de retenção.
@@ -20,6 +22,8 @@ O projeto cobre todas as etapas de um pipeline de dados: entendimento do negóci
 | **Modelo** | Prever a probabilidade de churn de cada usuário nos próximos 28 dias |
 | **Priorização** | Listar os 50 clientes com a maior probabilidade de churn |
 | **Ação** | Propor uma ação de retenção para esses clientes |
+
+![Problema de negócio](img/slides/02_problema_negocio.png)
 
 ---
 
@@ -82,6 +86,8 @@ flowchart LR
 - **Treino e teste:** safras até `2026-05-01`, com **uma safra sorteada por cliente**, para que nenhum cliente apareça mais de uma vez.
 - **OOT (*out-of-time*):** todos os clientes da safra `2026-06-01`, usada para simular a aplicação do modelo num período futuro.
 
+![Amostra](img/slides/03_amostra.png)
+
 ---
 
 ## Features
@@ -114,6 +120,28 @@ Todos os experimentos são rastreados no **MLflow**: parâmetros, métricas, gr�
 
 **Features selecionadas (11):** `qtFrequencia`, `freqVida`, `saldoDia`, `QtdeTransacoes`, `recencia`, `qtdeProdutoDistintos`, `qtPontosPositivos`, `flStreak`, `diasPrimeiraTransacao`, `pctTransacaoListapresenca`, `pctTransacaoChatMessage`.
 
+### Modify: imputação de variáveis
+
+![Imputação de variáveis](img/slides/04_imputacao.png)
+
+### Explore: exploração de dados
+
+![Exploração de dados](img/slides/05_exploracao.png)
+
+![Variáveis quase constantes](img/slides/06_quase_constantes.png)
+
+![Information Value](img/slides/07_information_value.png)
+
+![Correlação entre variáveis](img/slides/08_correlacao.png)
+
+### Modify: seleção de variáveis
+
+![Seleção de variáveis](img/slides/09_selecao_variaveis.png)
+
+### Model: algoritmos e grid de hiperparâmetros
+
+![Algoritmos e grid de hiperparâmetros](img/slides/10_algoritmos_grid.png)
+
 ---
 
 ## Resultados
@@ -125,12 +153,22 @@ Todos os experimentos são rastreados no **MLflow**: parâmetros, métricas, gr�
 | XGBoost | 0,839 | 0,790 | 0,854 | 0,841 | 0,049 |
 | CatBoost | 0,878 | **0,794** | 0,844 | 0,830 | 0,084 |
 
+![Comparação dos algoritmos](img/slides/11_comparacao_algoritmos.png)
+
 **Modelo escolhido: Random Forest**, pela maior AUC no OOT. As variáveis mais importantes são `qtFrequencia` (18,8%), `recencia` (16,7%) e `freqVida` (14,8%).
+
+![Variáveis mais importantes dos quatro algoritmos](img/slides/12_importancia_4_modelos.png)
+
+![Variáveis mais importantes do Random Forest](img/slides/13_importancia_random_forest.png)
 
 **Lift de churn na base OOT** (239 clientes, taxa média de churn de 43,9%):
 - **77%** de churn nos 20% de maior risco, contra **0%** nos 20% de menor risco
 - **69%** dos churns concentrados nos 40% de maior risco
 - Lift de **1,8×** na faixa de maior risco, para um máximo possível de 2,3×
+
+![Lift de churn por faixa de risco](img/slides/14_lift_churn.png)
+
+![Clientes prováveis para churn](img/slides/15_top50_churn.png)
 
 ---
 
@@ -145,6 +183,8 @@ Todos os experimentos são rastreados no **MLflow**: parâmetros, métricas, gr�
 | Resgate facilitado | Recompensa exclusiva e de menor custo para quem tem saldo parado | Saldo de pontos |
 
 **Medição:** metade dos 50 clientes, sorteada, forma o grupo de controle e não recebe a ação. A métrica é a taxa de churn em 28 dias, comparada entre tratados e controle e repetida a cada safra mensal.
+
+![Plano de retenção com pontos](img/slides/16_plano_retencao.png)
 
 ---
 
