@@ -1,5 +1,5 @@
 # Previsão de Churn na Comunidade TMW
-### Case Prático em Python e Databricks (CPPD)
+### Case Prático em Python e Databricks (CPPD) - [ASN.ROCKS](asn.rocks)
 
 Projeto de Data Science de ponta a ponta desenvolvido no **Case Prático em Python e Databricks**, com dados reais da comunidade [Téo Me Why](https://teomewhy.org/twitch), uma iniciativa de educação gratuita em dados que faz lives na Twitch.
 
