@@ -27,7 +27,7 @@ O projeto cobre todas as etapas de um pipeline de dados: entendimento do negóci
 
 O projeto combina duas fontes da comunidade TMW:
 
-**TMW Loyalty System** (`workspace.tmw_loyalty`): o sistema de pontos da comunidade na Twitch. Os usuários acumulam pontos ao interagir nas lives: mensagens no chat, lista de presença (`!presente`), sequências de dias consecutivos (*streaks*) e resgate de pôneis.
+**TMW Loyalty System** (`workspace.tmw_loyalty`) · [dataset no Kaggle](https://www.kaggle.com/datasets/teocalvo/teomewhy-loyalty-system/): o sistema de pontos da comunidade na Twitch. Os usuários acumulam pontos ao interagir nas lives: mensagens no chat, lista de presença (`!presente`), sequências de dias consecutivos (*streaks*) e resgate de pôneis.
 
 ![Database do sistema de pontos](img/database_loyalty.png)
 
@@ -37,7 +37,7 @@ O projeto combina duas fontes da comunidade TMW:
 | `transacao_produto` | Liga cada transação ao produto que a gerou |
 | `produtos` | Tipos de interação (ChatMessage, Lista de presença, Presença Streak, Resgatar Ponei etc.) |
 
-**TMW Education Platform** (`workspace.tmw_education`): a plataforma de cursos. Como o usuário pode conectar a conta da Twitch à plataforma, é possível relacionar o engajamento nas lives com o consumo de cursos.
+**TMW Education Platform** (`workspace.tmw_education`) · [dataset no Kaggle](https://www.kaggle.com/datasets/teocalvo/teomewhy-education-platform): a plataforma de cursos. Como o usuário pode conectar a conta da Twitch à plataforma, é possível relacionar o engajamento nas lives com o consumo de cursos.
 
 | Tabela | Conteúdo |
 |---|---|
@@ -161,10 +161,15 @@ Todos os experimentos são rastreados no **MLflow**: parâmetros, métricas, gr�
 
 ## Como reproduzir
 
-1. Importe os arquivos num workspace Databricks com acesso aos schemas `tmw_loyalty` e `tmw_education`.
-2. No `Features.ipynb`, ajuste `feature_name` (`fs_pontos` ou `fs_cursos`) e o intervalo de datas, e execute para cada feature store.
-3. Execute o `ABT.ipynb` para criar `workspace.analytics.abt_ativacao`.
-4. Execute o `train_2_comparacao_modelos.ipynb`. Antes, ajuste o ID do experimento no MLflow para o seu workspace.
+1. Baixe os datasets públicos do Kaggle:
+   [TeoMeWhy Loyalty System](https://www.kaggle.com/datasets/teocalvo/teomewhy-loyalty-system/) e
+   [TeoMeWhy Education Platform](https://www.kaggle.com/datasets/teocalvo/teomewhy-education-platform).
+2. Carregue as tabelas no Databricks nos schemas `workspace.tmw_loyalty` e `workspace.tmw_education`,
+   com os mesmos nomes usados nas queries (`transacoes`, `transacao_produto`, `produtos`,
+   `usuarios_tmw`, `cursos_episodios_completos`, `cursos_episodios`).
+3. No `Features.ipynb`, ajuste `feature_name` (`fs_pontos` ou `fs_cursos`) e o intervalo de datas, e execute para cada feature store.
+4. Execute o `ABT.ipynb` para criar `workspace.analytics.abt_ativacao`.
+5. Execute o `train_2_comparacao_modelos.ipynb`. Antes, ajuste o ID do experimento no MLflow para o seu workspace.
 
 ---
 
