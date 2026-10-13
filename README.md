@@ -27,9 +27,9 @@ O projeto cobre todas as etapas de um pipeline de dados: entendimento do negóci
 
 O projeto combina duas fontes da comunidade TMW:
 
-**TMW Loyalty System** (`workspace.tmw_loyalty`) · [dataset no Kaggle](https://www.kaggle.com/datasets/teocalvo/teomewhy-loyalty-system/): o sistema de pontos da comunidade na Twitch. Os usuários acumulam pontos ao interagir nas lives: mensagens no chat, lista de presença (`!presente`), sequências de dias consecutivos (*streaks*) e resgate de pôneis.
-
 ![Database do sistema de pontos](img/database_loyalty.png)
+
+**TMW Loyalty System** (`workspace.tmw_loyalty`) · [dataset no Kaggle](https://www.kaggle.com/datasets/teocalvo/teomewhy-loyalty-system/): o sistema de pontos da comunidade na Twitch. Os usuários acumulam pontos ao interagir nas lives: mensagens no chat, lista de presença (`!presente`), sequências de dias consecutivos (*streaks*) e resgate de pôneis.
 
 | Tabela | Conteúdo |
 |---|---|
